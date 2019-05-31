@@ -18,6 +18,13 @@
   font-size: large;
 }
 
+.red-color{
+  color: red
+}
+.margin-bottom{
+  margin-bottom: 15px !important;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

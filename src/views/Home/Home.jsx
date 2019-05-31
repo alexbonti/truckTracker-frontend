@@ -53,7 +53,7 @@ class Home extends Component {
                         <TruckCard truck={truck}/>
                     ))}
                     {this.props.boxes.map(box=>(
-                        <BoxCard box={box}/>
+                        <BoxCard box={box} missingBox={this.props.missingBox}/>
                     ))}
                    
 

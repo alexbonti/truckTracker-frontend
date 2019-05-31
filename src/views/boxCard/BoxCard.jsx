@@ -18,23 +18,25 @@ const useStyles = makeStyles(theme => ({
 function BoxCard(props) {
 
 
-  let box=props.box  
+  let box=props.box
+  let missingBox = props.missingBox  
   //console.log(props)  
   const classes = useStyles();
   return (
     <div key={props.box.id}>
       <Paper className={classes.root} >
-        <Typography>
+        <Typography className="margin-bottom">
           {box.id}
         </Typography>
        {/** <Typography component="p">
         Time {moment(props.truck.time).format('MMMM Do YYYY, h:mm:ss a')}
         </Typography> */}
         <Grid container>
-        <Grid item xs={6}>Truck {box.truck}</Grid>
-        <Grid item xs={6}>Status {
+        <Grid item xs={6} className="margin-bottom">Truck: {box.truck}</Grid>
+        <Grid item xs={6} className="margin-bottom">Status: {
             box.delivered?'Delivered':'Not Delivered'
         }</Grid>
+        <Grid item xs={6} className="red-color margin-bottom">{missingBox?'Box is Missing':''}</Grid>
         </Grid>
       </Paper>
     </div>

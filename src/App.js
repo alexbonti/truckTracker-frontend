@@ -5,21 +5,22 @@ import Home from './views/Home/Home'
 //import { socketTruck } from './api/socketTrucks';
 import { TruckGenerator } from './api/truckSimulator';
 import openSocket from 'socket.io-client';
-//const socket = openSocket('http://34.239.143.136:6001');
-const socket = openSocket('localhost:6011');
+const socket = openSocket('http://34.239.143.136:6001');
+//const socket = openSocket('localhost:6001');
 
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.updateTrucks = this.updateTrucks.bind(this)
-    this.checkBoxes=this.checkBoxes.bind(this)
+    this.timerTime = this.timerTime.bind(this)
     this.state = {
       firstBox:false,
       trucks: [],
       boxes:[],
       missingBoxes:[],
-      updateBoxTimestamp:0
+      updateBoxTimestamp:0,
+      missingBox:false
     }
 
   }
@@ -33,13 +34,13 @@ class App extends Component {
 
   }
 
-  checkBoxes(){
-    // var self=this.state
-    // setInterval(function(){
-    
-    //   console.log('time',self.updateBoxTimestamp)
-    //   //let time=Date.now()
-    // },2000)
+  timerTime(){
+    let timer = Date.now()
+    console.log(timer,this.state.updateBoxTimestamp)
+    if(timer-this.state.updateBoxTimestamp>15){
+      console.log("box missing")
+      this.setState({missingBox:true})
+    }
   }
 
   updateBoxes(boxes){
@@ -49,7 +50,7 @@ class App extends Component {
     }
     let updateBoxTimestamp=Date.now();
     //console.log('timestamp',updateBoxTimestamp)
-    this.setState({ boxes,updateBoxTimestamp})
+    this.setState({ boxes,updateBoxTimestamp,missingBox:false})
     console.log('App State',this.state.updateBoxTimestamp)
 }
 
@@ -76,11 +77,7 @@ initSocket(){
   componentDidMount() {
     this.initSocket()
     //setInterval(this.updateTrucks, 5000)
-    var self = this;
-    setInterval(function() {
-      console.log(self.updateBoxTimestamp);
-    }, 3000);
-
+    setInterval(this.timerTime, 30000);
   }
 
 
@@ -88,7 +85,7 @@ initSocket(){
     //console.log(TruckGenerator())
     return (
       <div className="App">
-        <Home trucks={this.state.trucks} boxes={this.state.boxes} />
+        <Home trucks={this.state.trucks} boxes={this.state.boxes} missingBox={this.state.missingBox}/>
 
       </div>
     );
