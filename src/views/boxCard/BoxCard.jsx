@@ -25,8 +25,11 @@ function BoxCard(props) {
   return (
     <div key={props.box.id}>
       <Paper className={classes.root} >
+      <Typography className="margin-bottom">
+          Boxes
+        </Typography>
         <Typography className="margin-bottom">
-          {box.id}
+          Box Id: {box.id}
         </Typography>
        {/** <Typography component="p">
         Time {moment(props.truck.time).format('MMMM Do YYYY, h:mm:ss a')}
