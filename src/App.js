@@ -37,7 +37,7 @@ class App extends Component {
   timerTime(){
     let timer = Date.now()
     console.log(timer,this.state.updateBoxTimestamp)
-    if(timer-this.state.updateBoxTimestamp>30){
+    if(timer-this.state.updateBoxTimestamp>300){
       console.log("box missing")
       this.setState({missingBox:true})
     }
