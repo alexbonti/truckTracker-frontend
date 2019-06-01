@@ -67,7 +67,7 @@ initSocket(){
 
       socket.on('boxes', (boxes) => {
         console.log('boxes',boxes)
-        if(boxes.boxes[0].id == "B9407F30-F5F8-466E-AFF9-25556B57FE6D"){
+        if(boxes.boxes[0].id == "06649F1A-51EC-40C2-BAE0-D1C063EAE3BB"){
           this.updateBoxes(boxes.boxes)
         }
       })
